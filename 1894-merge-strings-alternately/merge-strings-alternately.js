@@ -4,19 +4,16 @@
  * @return {string}
  */
 var mergeAlternately = function(word1, word2) {
-   let i = 0;
-    let result = "";  // Use a string instead of an array
+    let arrayLength = Math.max(word1.length,word2.length)
+    let arr =[]
 
-    // Merge characters alternately
-    while (i < word1.length || i < word2.length) {
-        if (i < word1.length) {
-            result += word1[i];  // Append character from word1
+    for(let i=0;i<arrayLength;i++){
+        if(word1[i]){
+            arr.push(word1[i])
         }
-        if (i < word2.length) {
-            result += word2[i];  // Append character from word2
+        if(word2[i]){
+            arr.push(word2[i])
         }
-        i++;
     }
-
-    return result;
+    return arr.join('');
 };
