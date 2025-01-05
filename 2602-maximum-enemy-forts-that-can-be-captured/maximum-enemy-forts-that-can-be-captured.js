@@ -3,17 +3,16 @@
  * @return {number}
  */
 function captureForts(forts) {
-    let prev = 0 ;
+    let prev = 0;
     let max=0;
 
-    forts.forEach((fort,idx) => {
-        if(fort){
-            if(forts[prev] && fort !== forts[prev]){
-                max = Math.max(max, (idx-prev-1))
+    for (let k=0;k<forts.length;k++){
+        if(forts[k]){
+            if(forts[prev] && forts[k]!==forts[prev]){
+                max = Math.max(max, k-prev-1)
             }
-            prev= idx
+            prev = k
         }
-    })
-
+    }
     return max
 }
