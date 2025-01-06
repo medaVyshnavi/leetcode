@@ -8,12 +8,7 @@ var findTheArrayConcVal = function(nums) {
     let concat = 0
 
     while(i<=j){
-        if(i===j){
-            concat +=nums[i]
-        }else{
-           let res = nums[i].toString() + nums[j]
-            concat += Number(res)
-        }
+        concat += i===j ? nums[i] : Number(`${nums[i]}${nums[j]}`)
         i++;
         j--
         
