@@ -3,8 +3,16 @@
  * @return {string}
  */
 var reverseWords = function(s) {
-    let arr = s.split(' ');
-    arr = arr.map(item => item.split('').reverse().join(''))
+    let word = ''
+    let result = ''
 
-    return arr.join(' ')
+    for (let i = 0; i<s.length ; i++){
+        if(s[i] !== ' '){
+            word = s[i]+word
+        }else{
+            result = result + word + ' '
+            word = ''
+            }
+    }
+    return result + word
 };
