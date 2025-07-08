@@ -2,17 +2,17 @@
  * @param {number[]} nums
  * @return {number}
  */
-var findMaxConsecutiveOnes = function (nums) {
-    let max = 0
-    let count = 0
+var findMaxConsecutiveOnes = function(nums) {
+    let occurances = 0;
+    let maxOcc = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] == 1) {
-            count = count + 1
-            max = max < count ? count : max
-        } else {
-            count = 0
+    for(let i=0;i<nums.length;i++){
+        if(nums[i] === 1){
+            occurances++;
+        }else{
+            maxOcc = Math.max(maxOcc,occurances)
+            occurances = 0;
         }
     }
-    return max
+    return Math.max(maxOcc,occurances)
 };
