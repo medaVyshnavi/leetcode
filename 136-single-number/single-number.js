@@ -3,9 +3,19 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    let xor = 0;
-    for(let i=0;i<nums.length;i++){
-        xor = xor^nums[i]
+    let hashMap = {};
+
+    for(let i =0;i<nums.length;i++){
+        if(!hashMap[nums[i]]){
+            hashMap[nums[i]] = 1;
+        }else{
+            hashMap[nums[i]]++;
+        }
     }
-    return xor
+
+    for(let i =0;i<nums.length;i++){
+         if(hashMap[nums[i]] == 1){
+            return nums[i]
+        }
+    }
 };
