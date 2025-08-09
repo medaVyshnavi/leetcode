@@ -10,18 +10,15 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle = function(head) {
-    let current = head;
-    let set = new Set();
+var hasCycle = function (head) {
+    let fast = head;
+    let slow = head;
 
-    while(current){
-        if(set.has(current)){
-            return true;
-        }
-        else{
-            set.add(current);
-            current = current.next
-        }
+    while (fast && fast.next) {
+        fast = fast.next.next;
+        slow = slow.next
+
+        if (fast === slow) return true;
     }
     return false
 };
