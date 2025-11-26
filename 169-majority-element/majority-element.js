@@ -3,26 +3,21 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    let count=0;
-    let el =0;
+    let limit = Math.floor(nums.length/2);
+    let hashMap = {};
 
-    for(let i =0;i< nums.length;i++){
-        if(count == 0){
-            el = nums[i];
-            count=1
-        }
-        else if(nums[i] == el){
-            count++
+    for(let i=0; i<nums.length;i++){
+        if(!hashMap[nums[i]]){
+            hashMap[nums[i]] = 1;
         }else{
-            count--
+            hashMap[nums[i]]++;
         }
     }
-    let ctr = 0
-    for(let i =0;i<nums.length;i++){
-        if(el == nums[i]){
-            ctr++
+
+    for(let i=0;i<nums.length;i++){
+        if(hashMap[nums[i]] > limit){
+            return nums[i]
         }
     }
-    if(ctr>Math.floor(nums.length/2)) return el
-    return -1
+    
 };
