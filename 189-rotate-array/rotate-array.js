@@ -15,7 +15,8 @@ var rotate = function(nums, k) {
             end--
         }
     }
-    reverse(0, n-k-1);
-    reverse(n-k,n-1);
-    reverse(0, n-1 )
+    reverse(0, n - 1);
+reverse(0, k - 1);
+reverse(k, n - 1);
+
 };
