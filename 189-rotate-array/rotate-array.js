@@ -4,18 +4,20 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function(nums, k) {
-    k %= nums.length // if k is greater than nums.length then one cycle is completed that means it will remain the same and we have to remainder shifts
-    
-   let reverse = function(i, j){
-    while(i < j){
-        let temp = nums[i]
-        nums[i] = nums[j]
-        nums[j] = temp
-        i++
-        j--
+    let temp = [];
+    let n = nums.length;
+    k = k % nums.length
+
+    for(let i=0;i<n-k;i++){
+        temp[i] = nums[i]
     }
-   } // suppose  ----->---> 
-	reverse(0, nums.length-1); // reverse   <--<------
-	 reverse(0, k-1) // reverse first part ---><----
-   reverse(k, nums.length-1)// reverse second part --->----->
+
+    for(let i = n-k;i<n;i++){
+        nums[i-(n-k)] = nums[i]
+    }
+
+    for(let i =k ;i<n ; i++){
+        nums[i] = temp[i-k]
+    }
+    return nums
 };
