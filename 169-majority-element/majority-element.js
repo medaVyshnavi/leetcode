@@ -3,21 +3,18 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    let map = new Map();
+    let candidate = nums[0];
+    let count =0;
+
     for(let i=0;i<nums.length;i++){
-        if(map.has(nums[i])){
-            map.set(nums[i],map.get(nums[i])+1);
+        if(candidate === nums[i]){
+            count++;
         } else{
-            map.set(nums[i],1)
+            count--;
+        }
+        if(count == 0){
+            candidate = nums[i+1]
         }
     }
-    let count = 0;
-    let maxElement = 0;
-    for(let i=0;i<nums.length;i++){
-       if(count < map.get(nums[i])){
-        count = map.get(nums[i]);
-        maxElement = nums[i]
-       }
-    }
-    return maxElement;
+    return candidate
 };
