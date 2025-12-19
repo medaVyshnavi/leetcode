@@ -21,5 +21,12 @@ var dailyTemperatures = function (s) {
             stack.push([s[i], i])
         }
     }
-    return [...map.values()].reverse();
+    let res = [...map.values()]
+    let i=0;
+    let j=res.length-1
+    while(i <j){
+        [res[i],res[j]] = [res[j],res[i]];
+        i++;j--;
+    }
+    return res;
 };
