@@ -3,27 +3,29 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    let i =0;
-    let j=s.length-1;
+    s = s.toLowerCase();
+    let res = ""
+
+    for(let i=0;i<s.length;i++){
+        let char = s[i].charCodeAt(0);
+        if(char >=48 && char <= 57){
+            res+=s[i];
+        } else if(char >=65 && char<=90){
+            res+=s[i]
+        } else if(char>=97 && char<=122) {
+            res+=s[i]
+        }
+    }
+    console.log(res)
+    let i=0;
+    let j=res.length-1;
 
     while(i < j){
-        while(i < j && !isAlphanumeric(s[i])) i++;
-        while(i < j && !isAlphanumeric(s[j])) j--;
-
-        if(s[i].toLowerCase() !== s[j].toLowerCase()){
+        if(res[i] !== res[j]){
             return false
         }
         i++;
         j--;
     }
-    return true;
-    
+    return true
 };
-
-function isAlphanumeric(c){
-    let code = c.charCodeAt(0);
-    if (code >= 48 && code <= 57) return true;
-    if (code >= 65 && code <= 90) return true;
-    if (code >= 97 && code <= 122) return true;
-    return false;
-}
