@@ -8,7 +8,7 @@ var mySqrt = function(x) {
     let right = Math.floor(x/2);
 
     while(left <= right){
-        let middle = Math.floor((left+right)/2);
+        let middle = left + Math.floor((right-left)/2);
         if(middle**2 === x){
             return middle;
         } else if(middle**2 > x){
