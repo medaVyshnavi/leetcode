@@ -21,15 +21,15 @@ var solution = function(isBadVersion) {
         let left = 1;
         let right = n;
 
-        while(left<right){
+        while(left<=right){
             let m = left + Math.floor((right -left)/2);
             let res = isBadVersion(m);
             if(!res){
                 left = m+1;
             }else{
-                right= m;
+                right= m-1;
             }
         }
-        return right;
+        return right+1;
     };
 };
