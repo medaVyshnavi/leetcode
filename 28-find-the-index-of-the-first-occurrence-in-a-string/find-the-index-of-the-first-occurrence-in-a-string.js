@@ -4,25 +4,18 @@
  * @return {number}
  */
 var strStr = function(haystack, needle) {
-    let m = haystack.length
-    let n = needle.length
-    
-    if(n === 0) return 0;
-    if(n > m ) return -1
+    let n = haystack.length;
+    let m = needle.length;
 
-    let i =0
-    while(i<=m-n){
-        if(haystack[i] === needle[0]){
-            let match = true
-            for(let j=0;j<n;j++){
-                if(haystack[i+j] !==needle[j]){
-                    match = false
-                    break
-                }
+    for(let i=0;i<= n-m; i++){
+        let j = 0;
+        while( j < m){
+            if(haystack[i+j] !== needle[j]){
+                break;
             }
-            if(match === true) return i
+            j++;
         }
-       i++
+        if(j === m) return i;
     }
-    return -1
+    return -1;
 };
