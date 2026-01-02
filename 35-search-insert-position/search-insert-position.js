@@ -17,5 +17,5 @@ var searchInsert = function(nums, target) {
             j = m - 1;
         }
     }
-    return nums[j] > target ? j : j+1;
+    return i;
 };
