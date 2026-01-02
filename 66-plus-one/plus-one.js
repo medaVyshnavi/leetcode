@@ -3,15 +3,13 @@
  * @return {number[]}
  */
 var plusOne = function(digits) {
-    let res = "";
-    for(let i =0;i<digits.length;i++){
-        res+= digits[i];
+    for(let i=digits.length-1; i>=0; i--){
+        if(digits[i] < 9){
+            digits[i]++;
+            return digits;
+        }
+        digits[i] = 0;
     }
-    res = String(BigInt(res) + 1n);
-   
-    for(let i =0;i< res.length;i++){
-        digits[i] = Number(res[i])
-    }
-
+    digits.unshift(1)
     return digits
 };
