@@ -3,25 +3,20 @@
  * @return {number[]}
  */
 var sortedSquares = function(nums) {
-    let i = 0;
-    let j = nums.length - 1;
-    let res = new Array(nums.length-1)
-    let pos = nums.length-1
+    let i = 0 ;
+    let j = nums.length-1;
+    let res = [];
+    let k = nums.length-1;
 
-    while (i <= j) {
-        let leftSquare = nums[i]*nums[i];
-        let rightSquare = nums[j]*nums[j];
-
-        if(leftSquare > rightSquare){
-            res[pos] = leftSquare
+    while(i<=j){
+        if(nums[i] **2 > nums[j]**2){
+            res[k] = nums[i]**2;
             i++
-
-        }else{
-            res[pos] = rightSquare;
+        } else{
+            res[k] = nums[j]**2;
             j--
         }
-        pos--
+        k--;
     }
-
-    return res
+    return res;
 };
