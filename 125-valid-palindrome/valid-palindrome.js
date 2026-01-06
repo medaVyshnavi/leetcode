@@ -3,25 +3,13 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    s = s.toLowerCase();
-    let res = ""
-
-    for(let i=0;i<s.length;i++){
-        let char = s[i].charCodeAt(0);
-        if(char >=48 && char <= 57){
-            res+=s[i];
-        } else if(char >=65 && char<=90){
-            res+=s[i]
-        } else if(char>=97 && char<=122) {
-            res+=s[i]
-        }
-    }
-    console.log(res)
     let i=0;
-    let j=res.length-1;
+    let j=s.length-1;
+    while(i<j){
+        while(!isAlphanumeric(s[i])) i++;
+        while(!isAlphanumeric(s[j])) j--;
 
-    while(i < j){
-        if(res[i] !== res[j]){
+        if(s[i]?.toLowerCase() !== s[j]?.toLowerCase()){
             return false
         }
         i++;
@@ -29,3 +17,7 @@ var isPalindrome = function(s) {
     }
     return true
 };
+
+function isAlphanumeric(ch){
+    return /[a-z0-9]/i.test(ch)
+}
