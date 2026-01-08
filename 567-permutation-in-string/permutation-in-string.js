@@ -4,32 +4,39 @@
  * @return {boolean}
  */
 var checkInclusion = function(s1, s2) {
-    let arr1  = Array(26).fill(0);
-    let size = 0
-    for(let i =0;i<s1.length;i++){
-        let c = s1[i].charCodeAt(0) - 97;
-        arr1[c]++;
+    let need = {};
+
+    for(let ch of s1){
+        need[ch] = (need[ch] || 0) + 1
     }
 
-    for(let i =0;i<arr1.length;i++){
-        if(arr1[i] !== 0) size++;
-    }
+    let left = 0;
+    let right = 0;
+    let window = {};
+    let matches = 0;
+    let required = Object.keys(need).length;
 
-    let arr2 = Array(26).fill(0);
-    let i =0; let j =0; let valid = 0;
-    while(j < s2.length){
-        let c = s2[j].charCodeAt(0) - 97;
-        arr2[c]++;
-        if(arr1[c] === arr2[c]) valid++
-        j++;
-
-        while( j - i >= s1.length){
-            if(valid === size) return true;
-            let ch = s2[i].charCodeAt(0) - 97;
-            if(arr1[ch] === arr2[ch]) valid--;
-            arr2[ch]--;
-            i++
+    while(right < s2.length){
+        let char = s2[right];
+        window[char] = (window[char] || 0) + 1;
+        if(need[char] && need[char] === window[char]){
+            matches++;
         }
+        right++;
+
+        if(right-left > s1.length){
+            let ch = s2[left];
+            if(need[ch] && need[ch] === window[ch]){
+                matches--;
+            }
+            window[ch]--
+            if(window[ch] === 0) {
+                delete window[ch];
+            }
+            left++
+        }
+
+        if(right - left === s1.length && matches === required) return true;
     }
     return false;
 };
