@@ -13,7 +13,6 @@ var longestOnes = function(nums, k) {
         if(nums[j] == 0){
             count++
         }
-        j++;
         while(count > k){
             if(nums[i] == 0){
                 count--;
@@ -21,6 +20,7 @@ var longestOnes = function(nums, k) {
             i++;
         }
         max = Math.max(max, j-i+1)
+        j++;
     }
-    return max-1
+    return max
 };
