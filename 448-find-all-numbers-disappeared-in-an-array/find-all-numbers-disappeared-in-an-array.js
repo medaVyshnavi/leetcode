@@ -15,3 +15,5 @@ var findDisappearedNumbers = function(nums) {
     }
     return nums
 };
+
+// o(n) -> TC and SC
