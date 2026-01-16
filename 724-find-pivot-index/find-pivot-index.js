@@ -11,15 +11,11 @@ var pivotIndex = function(nums) {
     }
 
     let prefix = 0;
-    if(res[0] === 0){
-        return 0
-    }
-
-    for(let i =1;i<nums.length;i++){
-        prefix = prefix + nums[i-1];
+    for(let i =0;i<nums.length;i++){
         if(prefix === res[i]){
             return i
         }
+        prefix = prefix + nums[i];
     }
     return -1;
 };
