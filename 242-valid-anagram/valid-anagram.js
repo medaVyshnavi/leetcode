@@ -4,23 +4,20 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    if(s.length !== t.length) return false
-    let map = new Map();
-
-    for(let i=0;i<s.length;i++){
-        if(map.has(s[i])){
-            map.set(s[i],map.get(s[i])+1)
-        }else{
-            map.set(s[i],1)
-        }
+    let sArray = new Array(26).fill(0);
+    for(let ch of s){
+        let index = ch.charCodeAt(0) - 97;
+        sArray[index]++;
     }
+    let sString = sArray.join("#");
 
-    for(let i=0;i<t.length;i++){
-        if(!map.has(t[i]) || map.get(t[i]) < 0){
-            return false;
-        }
-        map.set(t[i], map.get(t[i])-1)
+    let tArray = new Array(26).fill(0);
+    for(let ch of t){
+        let index = ch.charCodeAt(0) - 97;
+        tArray[index]++;
     }
-    
-    return ![...map.values()].some(i => i<0 || i>0)
+    let tString = tArray.join("#");
+
+    return sString === tString  
+
 };
