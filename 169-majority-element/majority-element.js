@@ -4,16 +4,17 @@
  */
 var majorityElement = function(nums) {
     let candidate = nums[0];
-    let count =0;
+    let count =1;
 
-    for(let i=0;i<nums.length;i++){
+    for(let i = 1; i<nums.length;i++){
         if(candidate === nums[i]){
-            count++;
-        } else{
-            count--;
+            count++
+        }else{
+            count--
         }
-        if(count == 0){
-            candidate = nums[i+1]
+        if(count <= 0){
+            candidate = nums[i];
+            count = 1;
         }
     }
     return candidate
