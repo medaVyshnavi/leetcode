@@ -3,20 +3,19 @@
  * @return {number}
  */
 var mySqrt = function(x) {
-    if(x < 2) return x ;
-    let left = 2;
-    let right = Math.floor(x/2);
+    if(x < 2) return x;
+    let low = 2;
+    let high = Math.floor(x/2);
 
-    while(left <= right){
-        let middle = left + Math.floor((right-left)/2);
-        if(middle**2 === x){
-            return middle;
-        } else if(middle**2 > x){
-            right = middle-1;
+    while(low <= high){
+        let mid = low + Math.floor((high-low)/2);
+        if(mid**2 == x) {
+            return mid;
+        } else if(mid**2 > x){
+            high= mid-1;
         } else{
-            left = left+1;
+            low = low+1;
         }
     }
-
-    return right;
+    return high;
 };
