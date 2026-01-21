@@ -4,19 +4,17 @@
  */
 var mySqrt = function(x) {
     if(x < 2) return x;
+    let left = 2;
+    let right = Math.floor(x/2);
 
-    let low = 2;
-    let high = Math.floor(x/2);
-
-    while(low<=high){
-        let mid = low + Math.floor((high-low)/2);
-        if(mid**2 === x){
-            return mid
-        }else if(mid**2 > x){
-            high = mid-1;
+    while(left <= right){
+        let mid = left + Math.floor((right-left)/2);
+        if(mid**2 === x) return mid;
+        else if(mid**2 > x){
+            right = mid-1;
         }else{
-            low = mid+1;
+            left = mid +1;
         }
     }
-    return high
+    return right
 };
