@@ -20,10 +20,9 @@ var solution = function(isBadVersion) {
     return function(n) {
         let left = 1;
         let right = n;
-
-        while(left<right){
+        while(left < right){
             let mid = left + Math.floor((right-left)/2);
-            let res = isBadVersion(mid);
+            let res = isBadVersion(mid)
             if(res){
                 right = mid;
             }else{
