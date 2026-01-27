@@ -2,16 +2,17 @@
  * @param {number[]} arr
  * @return {number}
  */
-var peakIndexInMountainArray = function(arr) {
-    let l = 0;
-    let r = arr.length-1;
-    while(l < r){
-        let m = l + Math.floor((r-l)/2)
-        if(arr[m+1] > arr[m]){
-            l = m+1
-        } else{
-            r = m
+var peakIndexInMountainArray = function(nums) {
+    let left = 0;
+    let right = nums.length-1;
+
+    while(left < right){
+        let mid = left + Math.floor((right-left)/2);
+        if(nums[mid] < nums[mid+1]){
+            left = mid+1
+        }else{
+            right = mid;
         }
     }
-    return l
+    return left
 };
