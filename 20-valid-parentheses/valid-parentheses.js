@@ -4,21 +4,19 @@
  */
 var isValid = function(s) {
     let stack = [];
-    let map = {
+    let brackets = {
         "(" : ")",
-        "{" : "}",
-        "[" : "]"
+        "[" : "]",
+        "{" : "}"
     }
 
-    for(let i=0;i< s.length;i++){
-        if(map[s[i]]){
-            stack.push(s[i])
+    for(let char of s){
+        if(brackets[char]){
+            stack.push(char)
         }else{
-            let top = stack.pop();
-            if(s[i] !== map[top]){
-                return false
-            }
+            let element = stack.pop();
+            if(brackets[element] !== char) return false
         }
     }
-    return stack.length ===  0;
+    return stack.length === 0;
 };
