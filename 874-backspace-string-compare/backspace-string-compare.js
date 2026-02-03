@@ -6,42 +6,39 @@
 var backspaceCompare = function(s, t) {
     let i = s.length-1;
     let j = t.length-1;
-
-    let sSkip = 0;
     let tSkip = 0;
+    let sSkip = 0;
 
+    // looking for next valid char 
     while(i>=0 || j>=0){
         while(i>=0){
-            if(s[i] === "#"){
+            if(s[i] == "#"){
                 sSkip++;
-                i--
+                i--;
             }else if(sSkip > 0){
                 sSkip--;
-                i--
+                i--;
             }else{
                 break;
             }
         }
 
         while(j>=0){
-            if(t[j] === "#"){
+            if(t[j] == "#"){
                 tSkip++;
-                j--
+                j--;
             }else if(tSkip > 0){
                 tSkip--;
-                j--
+                j--;
             }else{
                 break;
             }
         }
 
-        if(i>=0 && j>=0){
-            if(s[i] !== t[j]) return false
-        }else {
-            // one string ended before the other
-            if (i >= 0 || j >= 0) return false;
+        if(i>=0 || j>=0){
+            if(s[i] !== t[j]) return false;
+            else if(s[i] === 0 || t[j] === 0) return false;
         }
-
         i--;
         j--;
     }
