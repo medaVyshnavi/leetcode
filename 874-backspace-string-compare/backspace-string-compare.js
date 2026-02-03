@@ -4,24 +4,46 @@
  * @return {boolean}
  */
 var backspaceCompare = function(s, t) {
-    let sStack = [];
-    let tStack = [];
+    let i = s.length-1;
+    let j = t.length-1;
 
-    for(let i=0; i<s.length;i++){
-        if(s[i] !== "#"){
-            sStack.push(s[i])
-        }else{
-            sStack.pop();
+    let sSkip = 0;
+    let tSkip = 0;
+
+    while(i>=0 || j>=0){
+        while(i>=0){
+            if(s[i] === "#"){
+                sSkip++;
+                i--
+            }else if(sSkip > 0){
+                sSkip--;
+                i--
+            }else{
+                break;
+            }
         }
-    }
 
-    for(let i= 0; i<t.length;i++){
-        if(t[i] !== "#"){
-            tStack.push(t[i])
-        }else{
-            tStack.pop();
+        while(j>=0){
+            if(t[j] === "#"){
+                tSkip++;
+                j--
+            }else if(tSkip > 0){
+                tSkip--;
+                j--
+            }else{
+                break;
+            }
         }
-    }
 
-    return sStack.join("") === tStack.join("");
+        if(i>=0 && j>=0){
+            if(s[i] !== t[j]) return false
+        }else {
+            // one string ended before the other
+            if (i >= 0 || j >= 0) return false;
+        }
+
+        i--;
+        j--;
+    }
+    return true;
 };
