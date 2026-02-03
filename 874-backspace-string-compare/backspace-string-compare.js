@@ -37,7 +37,6 @@ var backspaceCompare = function(s, t) {
 
         if(i>=0 || j>=0){
             if(s[i] !== t[j]) return false;
-            else if(s[i] === 0 || t[j] === 0) return false;
         }
         i--;
         j--;
