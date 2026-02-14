@@ -6,15 +6,10 @@
 var removeDuplicates = function(s, k) {
     let stack = [];
     for(let i=0;i<s.length;i++){
-        if(stack.length){
-            if(stack[stack.length-1][0] !== s[i]){
-                stack.push([s[i],1])
-            }else{
-                let [val,count] = stack.pop();
-                count++;
-                if(count !== k){
-                    stack.push([s[i] , count])
-                }
+        if(stack.length && stack[stack.length-1][0] === s[i]){
+            stack[stack.length-1][1]++
+            if(stack[stack.length-1][1] === k){
+                stack.pop();
             }
         }
         else{
