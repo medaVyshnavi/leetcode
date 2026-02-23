@@ -15,11 +15,12 @@ var removeElements = function(head, val) {
     sentinal.next = head;
 
     let current = sentinal;
+
     while(current.next){
-        if(current.next.val === val){
-            current.next = current.next.next
+        if(current.next.val == val){
+            current.next = current.next.next;
         }else{
-            current = current.next
+            current = current.next;
         }
     }
     return sentinal.next
