@@ -3,14 +3,14 @@
  * @return {number}
  */
 var missingNumber = function(nums) {
-    let xor = 0;
-    for(let i=0;i< nums.length;i++){
-        xor^=nums[i]
-    }
+    let sum = 0;
+    let msum = 0;
 
-    for(let i=1; i<= nums.length;i++){
-        xor^= i;
+    for(let i=0;i<nums.length+1;i++){
+        sum+=i
     }
-
-    return xor;
+    for(let i=0;i<nums.length;i++){
+        msum+=nums[i]
+    }
+    return sum-msum;
 };
