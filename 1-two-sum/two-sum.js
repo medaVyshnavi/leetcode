@@ -9,8 +9,6 @@ var twoSum = function(nums, target) {
         if(map.has(nums[i])){
             return [map.get(nums[i]),i]
         }
-        else{
-            map.set(target-nums[i],i)
-        }
+        map.set(target-nums[i],i)
     }
 };
