@@ -3,18 +3,20 @@
  * @return {number[]}
  */
 var findDisappearedNumbers = function(nums) {
-    let res = [];
-    for(let i =0;i<nums.length;i++){
-        let index = Math.abs(nums[i])-1;
+    let res= [];
+
+    for(let i=0;i<nums.length;i++){
+        let index = Math.abs(nums[i]) - 1
         if(nums[index] > 0){
             nums[index] = -nums[index]
-        }
+        }   
     }
-    
-    for(let i =0;i<nums.length;i++){
+
+    for(let i=0; i< nums.length;i++){
         if(nums[i] > 0){
-            res.push(i+1);
+            res.push(i+1)
         }
     }
+
     return res
 };
