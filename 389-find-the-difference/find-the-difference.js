@@ -4,12 +4,13 @@
  * @return {character}
  */
 var findTheDifference = function(s, t) {
-    let result = 0
-    for(let ch of s){
-        result = result ^ ch.charCodeAt(0)
+    let res = 0;
+    for(let char of s){
+        res = res ^ char.charCodeAt(0);
     }
-    for(let ch of t){
-        result = result ^ ch.charCodeAt(0);
+    for(let char of t){
+        res = res ^ char.charCodeAt(0)
     }
-    return String.fromCharCode(result)
+
+    return String.fromCharCode(res)
 };
