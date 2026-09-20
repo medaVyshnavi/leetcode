@@ -11,21 +11,24 @@
  * @return {number[]}
  */
 var postorderTraversal = function(root) {
-    if(!root) return []
-    let s1 = [root];
-    let s2 = []
-    while(s1.length){
-        let curr = s1.pop();
-        s2.push(curr.val);
-        curr.left && s1.push(curr.left);
-        curr.right && s1.push(curr.right);
+    let stack = [];
+    let ans = [];
+    let curr = root;
+    let lastVisited = null
+
+    while(stack.length || curr){
+        while(curr){
+            stack.push(curr);
+            curr = curr.left
+        }
+
+        let peek = stack[stack.length-1];
+        if(peek.right && peek.right !=lastVisited){
+            curr = peek.right
+        }else{
+            ans.push(peek.val);
+            lastVisited = stack.pop()
+        }
     }
-    let i = 0;
-    let j = s2.length-1
-    while(i <= j){
-        [s2[i], s2[j]] = [s2[j], s2[i]]
-        i++;
-        j--;
-    }
-    return s2
+    return ans
 };
