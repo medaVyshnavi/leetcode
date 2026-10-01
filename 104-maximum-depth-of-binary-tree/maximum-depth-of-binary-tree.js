@@ -15,7 +15,6 @@ var maxDepth = function(root) {
     let maxDepth = 1;
     
     function traversal (curr, depth){
-        if(!curr) return depth
         curr.left && traversal(curr.left , depth+1)
         curr.right && traversal(curr.right, depth+1)
         maxDepth = Math.max(maxDepth, depth)
