@@ -11,15 +11,16 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if(!root) return 0;
-    let maxDepth = 1;
-    
-    function traversal (curr, depth){
-        curr.left && traversal(curr.left , depth+1)
-        curr.right && traversal(curr.right, depth+1)
-        maxDepth = Math.max(maxDepth, depth)
+    if(!root) return 0
+    let maxDepth =1
+
+    function traversal(curr, level){
+        if(!curr) return
+        maxDepth = Math.max(maxDepth, level);
+        traversal(curr.left, level+1);
+        traversal(curr.right, level+1);
     }
 
-    traversal(root, maxDepth)
+    traversal(root,1);
     return maxDepth
 };
