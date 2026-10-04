@@ -11,15 +11,25 @@
  * @return {number[]}
  */
 var postorderTraversal = function(root) {
+    if(!root) return []
     let ans = [];
+    let stack = [];
+    let curr = root;
+    let lastPushed = null
 
-    function traversal(curr){
-        if (!curr) return;
-        curr.left && traversal(curr.left)
-        curr.right && traversal(curr.right)
-        ans.push(curr.val)
+    while(stack.length || curr){
+        while(curr){
+            stack.push(curr);
+            curr = curr.left
+        }
+        let peekedVal = stack[stack.length-1]
+        if(peekedVal.right && lastPushed !== peekedVal.right){
+            curr = peekedVal.right
+        }else{
+            let ele = stack.pop();
+            ans.push(ele.val);
+            lastPushed = ele
+        }
     }
-
-    traversal(root);
     return ans
 };
