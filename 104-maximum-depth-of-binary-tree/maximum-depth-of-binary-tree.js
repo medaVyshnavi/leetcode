@@ -11,11 +11,20 @@
  * @return {number}
  */
 
-// Bottom-up Approach.
-// key is to use 1+ max(left,right) at every step 
+ // Top Down approach
+ // key is to add 1 to the depth while calling the function (similar to pre/post order recursion)
+
 var maxDepth = function(root) {
-    if(!root) return 0
-    let leftMax = maxDepth(root.left)
-    let rightMax = maxDepth(root.right)
-    return 1+ Math.max(leftMax,rightMax)
+    if(!root) return 0;
+
+    let maxDepth = 1
+    function traversal(curr,depth){
+        if(!curr) return 
+        traversal(curr.left, depth+1);
+        traversal(curr.right, depth+1)
+        maxDepth = Math.max(maxDepth, depth)
+    }
+
+    traversal(root,1)
+    return maxDepth
 };
