@@ -10,6 +10,9 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+// Bottom-up Approach.
+// key is to use 1+ max(left,right) at every step 
 var maxDepth = function(root) {
     if(!root) return 0
     let leftMax = maxDepth(root.left)
