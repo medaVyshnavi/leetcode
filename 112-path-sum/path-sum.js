@@ -12,21 +12,11 @@
  * @return {boolean}
  */
 var hasPathSum = function(root, targetSum) {
-    if(!root) return false
-    let ans = false
-
-    function traversal(curr, currentSum){
-        let newSum = curr.val + currentSum
-        if(!curr.left && !curr.right){
-            if(newSum === targetSum){
-                ans = ans || true
-            }
-        }
-
-        curr.left && traversal(curr.left, newSum);
-        curr.right && traversal(curr.right, newSum);
+    if(!root) return false;
+    
+    if(!root.left && !root.right){
+        return root.val === targetSum
     }
 
-    traversal(root, 0)
-    return ans
+    return hasPathSum(root.left, targetSum - root.val ) || hasPathSum(root.right , targetSum - root.val)
 };
