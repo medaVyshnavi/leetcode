@@ -11,16 +11,20 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
-    
-    function isMirror(left, right){
-        // if leaf node its symmetric
-        if(!left && !right) return true 
+    let q = [root.left, root.right];
+    while(q.length){
+        let p1 = q.shift();
+        let p2 = q.shift();
 
-        // if either one has left or right node, no symmetry
-        if(!left || !right) return false
+        if(!p1 && !p2) continue
 
-        return left.val === right.val && isMirror(left.left , right.right) && isMirror(left.right, right.left)
+        if(!p1 || !p2) return false;
+
+        if(p1.val !== p2.val) return false;
+
+        q.push(p1.left, p2.right);
+        q.push(p1.right, p2.left)
     }
 
-    return isMirror(root.left, root.right)
+    return true;
 };
