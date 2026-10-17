@@ -13,14 +13,20 @@
 var inorderTraversal = function(root) {
     if(!root) return [];
     let ans = [];
+    let stack = [];
+    let curr = root
 
-    function traversal(curr){
-        if(!curr) return 
-        traversal(curr.left);
-        ans.push(curr.val);
-        traversal(curr.right)
+    while(stack.length || curr){
+        while(curr){
+            stack.push(curr);
+            curr = curr.left
+        }
+
+        let node = stack.pop();
+        ans.push(node.val)
+        if(node.right){
+            curr = node.right
+        }
     }
-
-    traversal(root)
     return ans
 };
