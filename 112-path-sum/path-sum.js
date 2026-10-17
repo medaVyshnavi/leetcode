@@ -13,7 +13,19 @@
  */
 var hasPathSum = function(root, targetSum) {
     if(!root) return false;
-    if(!root.left && !root.right && targetSum === root.val) return true;
-    
-    return hasPathSum(root.left, targetSum-root.val) || hasPathSum(root.right, targetSum-root.val)
+    let ans = false;
+     
+    function traversal(curr,sum){
+        let newSum = curr.val + sum
+        if(!curr.left && !curr.right){
+           if(newSum === targetSum){
+                ans = ans || true
+            }
+        }
+        curr.left && traversal(curr.left, newSum);
+        curr.right && traversal(curr.right,newSum)
+    }
+
+    traversal(root,0);
+    return ans
 };
