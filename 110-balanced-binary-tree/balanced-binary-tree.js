@@ -11,19 +11,21 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    if(!root) return true;
-    let ans = true
-    function calcHeight(curr){
-        if(!curr) return 0;
-        let leftHeight = calcHeight(curr.left);
-        let rightHeight = calcHeight(curr.right);
+    let ans = true;
+
+    function calcHeight(curr, depth){
+        if(!curr) return true
+        let leftHeight = calcHeight(curr.left, depth)
+        let rightHeight = calcHeight(curr.right, depth)
 
         if(Math.abs(leftHeight - rightHeight) > 1){
             ans = ans && false
         }
+
         return 1+ Math.max(leftHeight,rightHeight)
     }
 
-    calcHeight(root);
-    return ans;
+    calcHeight(root , 0)
+    return ans
+    
 };
