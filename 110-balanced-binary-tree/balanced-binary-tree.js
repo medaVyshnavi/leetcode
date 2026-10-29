@@ -13,19 +13,16 @@
 var isBalanced = function(root) {
     let ans = true;
 
-    function calcHeight(curr, depth){
-        if(!curr) return true
-        let leftHeight = calcHeight(curr.left, depth)
-        let rightHeight = calcHeight(curr.right, depth)
-
+    function traversal (curr){
+        if(!curr) return 0;
+        let leftHeight = traversal(curr.left)
+        let rightHeight = traversal(curr.right)
         if(Math.abs(leftHeight - rightHeight) > 1){
             ans = ans && false
         }
-
         return 1+ Math.max(leftHeight,rightHeight)
     }
 
-    calcHeight(root , 0)
+    traversal(root)
     return ans
-    
 };
