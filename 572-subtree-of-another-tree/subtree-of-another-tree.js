@@ -12,25 +12,20 @@
  * @return {boolean}
  */
 var isSubtree = function(root, subRoot) {
-    let hash1 = serialize(root)
-    let hash2 = serialize(subRoot)
-
-    return hash1.includes(hash2)
+    let h1 = hashString(root)
+    let h2 = hashString(subRoot)
+    return h1.includes(h2)
 };
 
-var serialize = function (root){
+function hashString(root){
     let hash = ""
 
-    function traverse(curr){
-        if(!curr) {
-            hash = hash + "-#"
-            return
-        }
+    function traversal(curr){
+        if(!curr) return hash = hash + "#";
         hash = hash + "-" + curr.val + "#";
-        traverse(curr.left)
-        traverse(curr.right)
+        traversal(curr.left)
+        traversal(curr.right)
     }
-
-    traverse(root);
+    traversal(root)
     return hash
 }
