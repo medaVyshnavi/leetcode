@@ -13,11 +13,16 @@
 var invertTree = function(root) {
     if(!root) return root
 
-    let temp = root.left;
-    root.left = root.right;
-    root.right = temp
+    function traversal(curr){
+        if(!curr) return 
+        let temp = curr.left
+        curr.left = curr.right
+        curr.right = temp
 
-    invertTree(root.left)
-    invertTree(root.right)
+        traversal(curr.left)
+        traversal(curr.right)
+    }
+
+    traversal(root)
     return root
 };
