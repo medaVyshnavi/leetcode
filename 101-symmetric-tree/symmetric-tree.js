@@ -12,18 +12,14 @@
  */
 var isSymmetric = function(root) {
     let ans = true;
-    let q = [root.left,root.right]
-
-    while(q.length){
-        let left = q.shift();
-        let right = q.shift();
-        if(!right && !left) continue;
+    
+    function traversal(left,right){
+        if(!left && !right) return true ;
         if(!left || !right) return false;
-        if(left.val !== right.val) return false;
-        q.push(left.left,right.right)
-        q.push(left.right,right.left)
+
+        return left.val === right.val && traversal(left.left, right.right)
+        && traversal(left.right,right.left)
     }
 
-    return ans
-     
+    return traversal(root.left,root.right)
 };
