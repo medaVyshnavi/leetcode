@@ -14,7 +14,7 @@ var invertTree = function(root) {
     if(!root) return root
 
     function traversal(curr){
-        if(!curr) return 
+        if(!curr) return
         let temp = curr.left
         curr.left = curr.right
         curr.right = temp
