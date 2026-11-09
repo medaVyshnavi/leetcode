@@ -11,17 +11,20 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
+    if(!root) return []
     let ans = [];
+    let q = [root]
 
-    function traversal(curr,depth){
-        if(!curr) return
-        if(!ans[depth]) ans[depth] = [] 
-
-        ans[depth].push(curr.val)
-        traversal(curr.left, depth+1)
-        traversal(curr.right, depth+1)
+    while(q.length){
+        let newArray = [];
+        let lengthArray = q.length;
+        for(let i =0; i< lengthArray;i++){
+            let item = q.shift();
+            item && newArray.push(item.val)
+            item.left && q.push(item.left)
+            item.right && q.push(item.right)
+        }
+        ans.push(newArray)
     }
-
-    traversal(root,0)
     return ans
 };
