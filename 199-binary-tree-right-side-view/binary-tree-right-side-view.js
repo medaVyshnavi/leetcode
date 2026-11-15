@@ -13,15 +13,17 @@
 var rightSideView = function(root) {
     if(!root) return []
     let ans = []
-    let q = [root]
-    while(q.length){
-        let size = q.length;
-        for(let i=0; i < size; i++){
-            let curr = q.shift();
-            i == 0 && ans.push(curr.val)
-            curr.right && q.push(curr.right)
-            curr.left && q.push(curr.left)
+
+    function traversal(curr,depth){
+        if(!curr) return;
+
+        if(depth === ans.length){
+            ans.push(curr.val)
         }
+        traversal(curr.right,depth+1)
+        traversal(curr.left,depth+1)
     }
+
+    traversal(root,0);
     return ans
 };
