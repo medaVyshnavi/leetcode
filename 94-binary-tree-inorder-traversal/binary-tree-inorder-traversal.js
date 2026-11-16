@@ -11,15 +11,23 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
+    if(!root) return []
     let ans = []
+    let stack = []
+    let curr = root
 
-    function traversal(curr){
-        if(!curr) return
-        traversal(curr.left)
-        ans.push(curr.val)
-        traversal(curr.right)
+    while(stack.length || curr){
+        while(curr){
+            stack.push(curr)
+            curr = curr.left
+        }
+
+        let item = stack.pop();
+        ans.push(item.val)
+        if(item.right){
+            curr = item.right
+        }
     }
 
-    traversal(root)
     return ans
 };
