@@ -11,15 +11,15 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
-    if(!root) return []
     let ans = []
 
     function traversal(curr){
-        if(!curr) return;
-        curr.left && traversal(curr.left)
+        if(!curr) return
+        traversal(curr.left)
         ans.push(curr.val)
-        curr.right && traversal(curr.right)
+        traversal(curr.right)
     }
+
     traversal(root)
     return ans
 };
