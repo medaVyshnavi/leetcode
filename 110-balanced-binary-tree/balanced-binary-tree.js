@@ -11,18 +11,20 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    let ans = true;
+    let isBalanced = true
 
-    function traversal (curr){
-        if(!curr) return 0;
-        let leftHeight = traversal(curr.left)
-        let rightHeight = traversal(curr.right)
-        if(Math.abs(leftHeight - rightHeight) > 1){
-            ans = ans && false
+    function traversal(curr){
+        if(!curr) return 0
+        let left = traversal(curr.left)
+        let right = traversal(curr.right)
+
+        if(Math.abs(left-right) > 1){
+            isBalanced = false
         }
-        return 1+ Math.max(leftHeight,rightHeight)
+
+        return 1+ Math.max(left,right)
     }
 
     traversal(root)
-    return ans
+    return isBalanced
 };
